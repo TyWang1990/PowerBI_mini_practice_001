@@ -1,4 +1,3 @@
-```markdown
 # PowerBI Mini Practice 001
 
 ## Overview
