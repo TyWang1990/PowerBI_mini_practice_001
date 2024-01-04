@@ -1,5 +1,3 @@
-Certainly! Below is the formatted text for your GitHub readme file:
-
 ```markdown
 # PowerBI Mini Practice 001
 
