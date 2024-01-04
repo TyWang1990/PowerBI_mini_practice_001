@@ -1,3 +1,6 @@
+Certainly! Below is the formatted text for your GitHub readme file:
+
+```markdown
 # PowerBI Mini Practice 001
 
 ## Overview
@@ -11,7 +14,7 @@ The PowerBI Mini Practice 001 focuses on leveraging DAX (Data Analysis Expressio
 The "Total Sales" measure calculates the sum of sales on a row basis using the formula:
 
 ```DAX
-total sales = SUMX('销售表', '销售表'[销售]*RELATED('商品表'[售价]))
+total sales = SUMX('Sales Table', 'Sales Table'[Sales]*RELATED('Product Table'[Price]))
 ```
 
 ### Peak Sales
@@ -19,7 +22,7 @@ total sales = SUMX('销售表', '销售表'[销售]*RELATED('商品表'[售价])
 The "Peak Sales" measure determines the highest total sales based on the date table, allowing for filtered results by date. The formula is:
 
 ```DAX
-peak sales = MAXX('日期表', [total sales])
+peak sales = MAXX('Date Table', [total sales])
 ```
 
 ### Peak Date
@@ -28,9 +31,19 @@ The "Peak Date" measure returns the relevant date of the highest sales, consider
 
 ```DAX
 peak date = 
-VAR x=[peak sales]
-VAR tb=FILTER(VALUES('日期表'[日期]), [total sales]=x)
-RETURN IF(COUNTROWS(tb)=1, tb, BLANK())
+VAR x = [peak sales]
+VAR tb = FILTER(VALUES('Date Table'[Date]), [total sales] = x)
+RETURN IF(COUNTROWS(tb) = 1, tb, BLANK())
+```
+
+Alternatively, the same function can be achieved by using ADDCOLUMNS and SELECTCOLUMNS functions:
+
+```DAX
+peak date = 
+VAR tb1 = ADDCOLUMNS(VALUES('Date Table'[Date]), "sales amount", [sales amount])
+VAR x = [peak sales]
+VAR tb2 = SELECTCOLUMNS(FILTER(tb1, [sales amount] = x), "sales date", 'Date Table'[Date])
+RETURN IF(COUNTROWS(tb2) = 1, tb2, BLANK())
 ```
 
 ## Attribution
@@ -42,3 +55,6 @@ Feel free to explore the provided DAX expressions and adapt them to suit your sp
 ---
 
 **Note:** Make sure to replace Chinese characters with English equivalents in your actual implementation.
+```
+
+Remember to replace the Chinese characters with English equivalents in your actual implementation, as mentioned in the note.
