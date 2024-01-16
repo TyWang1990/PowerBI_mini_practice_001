@@ -1,4 +1,4 @@
-# PowerBI Mini Practice 001
+# PowerBI DAX Mini Practice 001
 
 ## Overview
 
